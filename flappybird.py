@@ -81,10 +81,10 @@ class FlappyBird:
                         self.jumpSpeed = 10
 
                     if(event.type != pygame.MOUSEBUTTONDOWN and event.key == pygame.K_RIGHT):
-                        self.level += 5
+                        self.level += 10
 
                     if(event.type != pygame.MOUSEBUTTONDOWN and event.key == pygame.K_LEFT):
-                        self.level -= 5
+                        self.level -= 10
 
             self.screen.fill((255, 255, 255))
             self.screen.blit(self.background, (0, 0))
@@ -96,6 +96,7 @@ class FlappyBird:
                                          -1,
                                          (255, 255, 255)),
                              (200, 50))
+            self.screen.blit(font.render(str(self.level), -1, (255, 255, 255)), (200, 658))
             if self.dead:
                 self.sprite = 2
                 self.level = 60
@@ -109,4 +110,5 @@ class FlappyBird:
             pygame.display.update()
 
 if __name__ == "__main__":
+    
     FlappyBird().run()
