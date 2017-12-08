@@ -4,7 +4,7 @@ import pygame
 from pygame.locals import *  # noqa
 import sys
 import random
-
+import os
 
 class FlappyBird:
     def __init__(self):
@@ -16,7 +16,7 @@ class FlappyBird:
                             pygame.image.load("assets/dead.png")]
         self.wallUp = pygame.image.load("assets/bottom.png").convert_alpha()
         self.wallDown = pygame.image.load("assets/top.png").convert_alpha()
-        self.gap = 130
+        self.gap = 130#130 파이프갭
         self.wallx = 400
         self.birdY = 350
         self.jump = 0
@@ -28,6 +28,7 @@ class FlappyBird:
         self.offset = random.randint(-110, 110)
         self.level = 60
         #self.deadcount = 0;
+        self.pause=False
 
     def updateWalls(self):
         self.wallx -= 2
@@ -109,6 +110,14 @@ class FlappyBird:
             self.screen.blit(self.birdSprites[self.sprite], (70, self.birdY))
             if not self.dead:
                 self.sprite = 2#0
+            #일시정지 구현할 부분
+            if event.type == pygame.KEYDOWN:
+                if (event.key == pygame.K_p)and(self.pause==False):
+                    self.pause = True
+                    os.system("Pause")
+                elif (event.key == pygame.K_p)and(self.pause==True):
+                    self.pause=False
+                    os.system("Pause")
             self.updateWalls()
             self.birdUpdate()
             pygame.display.update()
