@@ -27,13 +27,12 @@ class FlappyBird:
         self.counter = 0
         self.offset = random.randint(-110, 110)
         self.level = 60
-        #self.deadcount = 0;
 
     def updateWalls(self):
         self.wallx -= 2
         if self.wallx < -80:
             self.wallx = 400
-            self.counter += 1
+            self.counter += self.level
             self.offset = random.randint(-110, 110)
 
     def birdUpdate(self):
@@ -55,10 +54,8 @@ class FlappyBird:
                                self.wallDown.get_height())
         if upRect.colliderect(self.bird):
             self.dead = True
-            #self.deadcount += 1
         if downRect.colliderect(self.bird):
             self.dead = True
-            #self.deadcount += 1
         if not 0 < self.bird[1] < 720:
             self.bird[1] = 50
             self.birdY = 50
