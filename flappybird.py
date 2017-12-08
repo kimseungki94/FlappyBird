@@ -27,11 +27,8 @@ class FlappyBird:
         self.counter = 0
         self.offset = random.randint(-110, 110)
         self.level = 60
-<<<<<<< HEAD
-=======
         #self.deadcount = 0;
         self.pause=False
->>>>>>> feature/pause
 
     def updateWalls(self):
         self.wallx -= 2
