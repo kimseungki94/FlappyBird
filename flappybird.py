@@ -27,6 +27,7 @@ class FlappyBird:
         self.counter = 0
         self.offset = random.randint(-110, 110)
         self.level = 60
+        #self.deadcount = 0;
 
     def updateWalls(self):
         self.wallx -= 2
@@ -54,8 +55,10 @@ class FlappyBird:
                                self.wallDown.get_height())
         if upRect.colliderect(self.bird):
             self.dead = True
+            #self.deadcount += 1
         if downRect.colliderect(self.bird):
             self.dead = True
+            #self.deadcount += 1
         if not 0 < self.bird[1] < 720:
             self.bird[1] = 50
             self.birdY = 50
@@ -69,7 +72,7 @@ class FlappyBird:
         clock = pygame.time.Clock()
         pygame.font.init()
         font = pygame.font.SysFont("Arial", 50)
-        while True:
+        while True:#True    self.deadcount != 3
             clock.tick(self.level)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -98,13 +101,13 @@ class FlappyBird:
                              (200, 50))
             self.screen.blit(font.render(str(self.level), -1, (255, 255, 255)), (200, 658))
             if self.dead:
-                self.sprite = 2
+                self.sprite = 0#2
                 self.level = 60
             elif self.jump:
-                self.sprite = 1
+                self.sprite = 2#1
             self.screen.blit(self.birdSprites[self.sprite], (70, self.birdY))
             if not self.dead:
-                self.sprite = 0
+                self.sprite = 2#0
             self.updateWalls()
             self.birdUpdate()
             pygame.display.update()
