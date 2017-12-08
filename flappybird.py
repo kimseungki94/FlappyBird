@@ -87,7 +87,8 @@ class FlappyBird:
                         self.level += 10
 
                     if(event.type != pygame.MOUSEBUTTONDOWN and event.key == pygame.K_LEFT):
-                        self.level -= 10
+                        if(self.level>=70):
+                            self.level -= 10
 
             self.screen.fill((255, 255, 255))
             self.screen.blit(self.background, (0, 0))
